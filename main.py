@@ -49,10 +49,11 @@ def compare(coffee_ingredients):
         else:
             print(f"{item.capitalize()}, yetersiz.")
             not_enough = True
-    if not_enough == True:
+    if not_enough:
         return False
     else:
         return True
+
 
 def prosses_coins():
     """Returns total calculated from coins inserted"""
@@ -61,8 +62,21 @@ def prosses_coins():
     total += int(input("How many dimes do you want to insert ?\n")) * 0.10
     total += int(input("How many nickles do you want to insert ?\n")) * 0.05
     total += int(input("How many pennies do you want to insert ?\n")) * 0.01
-    return(total)
+    return round(total, 2)
 
+
+def is_transaction_successful(money_received, drink_cost):
+    """Return True or false for transaction outcame"""
+    if money_received >= drink_cost:
+        global profit
+        change = round(money_received - drink_cost, 2)
+        print(f"Here is ${change} in change")
+        profit += drink_cost
+        print("Transaction is successful")
+        return True
+    else:
+        print("Sorry that's not enough money. Money refunded")
+        return False
 
 
 while is_on:
@@ -77,7 +91,11 @@ while is_on:
         drink = MENU[choise]
         compare(drink["ingredients"])
 
-    print(f"Total is : ${prosses_coins()}")
+    total_cost = prosses_coins()
+    print(f"Total is : ${total_cost}")
+    coffee_cost = MENU[choise]["cost"]
 
-
-
+    if is_transaction_successful(total_cost, coffee_cost):
+        print("")
+    else:
+        print("brr")
