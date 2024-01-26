@@ -24,6 +24,7 @@ MENU = {
     }
 }
 
+profit = 0
 resources = {
     "water": 300,
     "milk": 200,
@@ -32,9 +33,21 @@ resources = {
 
 is_on = True
 
+
+def print_resources_report():
+    for item in resources:
+        print(f"{item.capitalize()}: {resources[item]}")
+    print(f"Money:${profit}")
+
+
 while is_on:
-    choise = input("What would you like? (espresso/latte/cappuccino" )
+    choise = input("What would you like? (espresso/latte/cappuccino)\n")
     if choise == "off":
         print("See you later!")
         is_on = False
         break
+    elif choise == "report":
+        print_resources_report()
+
+
+
