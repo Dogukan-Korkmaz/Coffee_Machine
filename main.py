@@ -54,6 +54,16 @@ def compare(coffee_ingredients):
     else:
         return True
 
+def prosses_coins():
+    """Returns total calculated from coins inserted"""
+    print("Please insert coins.")
+    total = int(input("How many quarters do you want to insert ?\n")) * 0.25
+    total += int(input("How many dimes do you want to insert ?\n")) * 0.10
+    total += int(input("How many nickles do you want to insert ?\n")) * 0.05
+    total += int(input("How many pennies do you want to insert ?\n")) * 0.01
+    return(total)
+
+
 
 while is_on:
     choise = input("What would you like? (espresso/latte/cappuccino)\n")
@@ -66,6 +76,8 @@ while is_on:
     elif choise == "espresso" or "latte" or "cappuccino":
         drink = MENU[choise]
         compare(drink["ingredients"])
+
+    print(f"Total is : ${prosses_coins()}")
 
 
 
