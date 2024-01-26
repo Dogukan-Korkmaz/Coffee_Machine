@@ -2,6 +2,7 @@ MENU = {
     "espresso": {
         "ingredients": {
             "water": 50,
+            "milk": 0,
             "coffee": 18,
         },
         "cost": 1.5,
@@ -40,6 +41,20 @@ def print_resources_report():
     print(f"Money:${profit}")
 
 
+def compare(coffee_ingredients):
+    not_enough = False
+    for item in coffee_ingredients:
+        if coffee_ingredients[item] <= resources[item]:
+            print(f"{item.capitalize()}, yeterli.")
+        else:
+            print(f"{item.capitalize()}, yetersiz.")
+            not_enough = True
+    if not_enough == True:
+        return False
+    else:
+        return True
+
+
 while is_on:
     choise = input("What would you like? (espresso/latte/cappuccino)\n")
     if choise == "off":
@@ -48,6 +63,9 @@ while is_on:
         break
     elif choise == "report":
         print_resources_report()
+    elif choise == "espresso" or "latte" or "cappuccino":
+        drink = MENU[choise]
+        compare(drink["ingredients"])
 
 
 
